@@ -1,11 +1,11 @@
 const { NotFound } = require("http-errors");
 
-const contactSchema = require("../schemas/contactSchema");
+// const contactSchema = require("../schemas/contactSchema");
 
 const contacts = require("../models/contacts");
 const ctrlWrapper = require("../helpers/ctrlWrapper");
 
-const listContacts = async (req, res, next) => {
+const listContacts = async (req, res) => {
   const result = await contacts.listContacts();
   if (!result) {
     throw new Error("Server error");
@@ -17,7 +17,7 @@ const listContacts = async (req, res, next) => {
   });
 };
 
-const getContactById = async (req, res, next) => {
+const getContactById = async (req, res) => {
   const { contactId } = req.params;
   const result = await contacts.getContactById(contactId);
   if (!result) {
@@ -30,12 +30,12 @@ const getContactById = async (req, res, next) => {
   });
 };
 
-const addContact = async (req, res, next) => {
-  const { error } = contactSchema.validate(req.body);
-  if (error) {
-    error.status = 400;
-    throw error;
-  }
+const addContact = async (req, res) => {
+  // const { error } = contactSchema.validate(req.body);
+  // if (error) {
+  //   error.status = 400;
+  //   throw error;
+  // }
   const newContact = await contacts.addContact(req.body);
   res.status(201).json({
     status: "success",
@@ -44,7 +44,7 @@ const addContact = async (req, res, next) => {
   });
 };
 
-const removeContact = async (req, res, next) => {
+const removeContact = async (req, res) => {
   const { contactId } = req.params;
   const contactDeleted = await contacts.removeContact(contactId);
   if (!contactDeleted) {
@@ -59,12 +59,12 @@ const removeContact = async (req, res, next) => {
   });
 };
 
-const updateContact = async (req, res, next) => {
-  const { error } = contactSchema.validate(req.body);
-  if (error) {
-    error.status = 400;
-    throw error;
-  }
+const updateContact = async (req, res) => {
+  // const { error } = contactSchema.validate(req.body);
+  // if (error) {
+  //   error.status = 400;
+  //   throw error;
+  // }
   const { contactId } = req.params;
   const contactUpdated = await contacts.updateContact(contactId, req.body);
   if (!contactUpdated) {
