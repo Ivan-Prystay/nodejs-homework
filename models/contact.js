@@ -7,23 +7,25 @@ const contactSchema = new Schema(
     name: {
       type: String,
       required: [true, "Set name for contact"],
-      unique: true,
     },
     email: {
       type: String,
       required: [true, "Set email for contact"],
       match: emailRegExp,
-      unique: true,
     },
     phone: {
       type: String,
       required: [true, "Set phone for contact"],
       match: phoneRegExp,
-      unique: true,
     },
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
     },
   },
   {
