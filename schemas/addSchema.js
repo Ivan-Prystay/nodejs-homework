@@ -8,7 +8,7 @@ const addSchema = Joi.object({
   phone: Joi.string()
     .required()
     .pattern(phoneRegExp)
-    .message("format (012) 345-6789"),
+    .label("format (012) 345-6789"),
   favorite: Joi.boolean(),
 });
 
