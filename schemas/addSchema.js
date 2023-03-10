@@ -5,10 +5,7 @@ const { emailRegExp, phoneRegExp } = require("../regExp");
 const addSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().required().pattern(emailRegExp),
-  phone: Joi.string()
-    .required()
-    .pattern(phoneRegExp)
-    .message("format (012) 345-6789"),
+  phone: Joi.string().required().pattern(phoneRegExp),
   favorite: Joi.boolean(),
 });
 

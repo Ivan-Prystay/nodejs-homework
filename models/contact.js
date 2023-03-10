@@ -16,7 +16,7 @@ const contactSchema = new Schema(
     phone: {
       type: String,
       required: [true, "Set phone for contact"],
-      match: [phoneRegExp, "format (012) 345-6789"],
+      match: phoneRegExp,
     },
     favorite: {
       type: Boolean,
