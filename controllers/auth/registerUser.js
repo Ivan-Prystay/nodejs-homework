@@ -31,9 +31,14 @@ const registerUser = async (req, res) => {
 
   const verifyEmail = {
     to: email,
-    from: "prystay_ivan@ukr.net",
     subject: "Verify email",
-    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${verificationCode}">Click verify email</a>`,
+    html: `
+    <div style="text-align: center">
+    <p style="margin-bottom: 20px">To use our service, you need to confirm your email address. Just press the button below.</p>
+    <a target="_blank" href="${BASE_URL}/api/users/verify/${verificationCode}" style="display:inline-block;color:#ffffff;background-color:#3498db;border:solid 1px #3498db;border-radius:5px;text-decoration:none;font-size:14px;font-weight:bold;margin-bottom: 20px;padding:12px 25px;text-transform:uppercase;border-color:#3498db;" rel="noreferrer noopener">CONFIRM</a>
+    <p>If you have not requested email address confirmation, please ignore this email.</p>
+        </div>
+    `,
   };
 
   await sendEmail(verifyEmail);
