@@ -18,6 +18,16 @@ router.post(
   auth.registerUser
 );
 
+// verify
+router.get("/verify/:verificationCode", auth.verifyEmail);
+
+// resendVerify
+router.post(
+  "/verify",
+  validateBody(schemas.emailSchema),
+  auth.resentVerifyEmail
+);
+
 // login
 router.post("/login", validateBody(schemas.loginSchema), auth.loginUser);
 
